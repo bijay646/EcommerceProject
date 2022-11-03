@@ -1,0 +1,7 @@
+
+.carousel-inner, .carousel-item{
+     height: 450px !important;
+ }
+ .carousel-item img{
+     height: 100%;
+ }

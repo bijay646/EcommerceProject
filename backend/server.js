@@ -6,6 +6,7 @@ const cors = require('cors')
 const CategoryRoute = require('./routes/categoryRoute')
 const ProductRoute = require('./routes/productRoute')
 const UserRoute = require('./routes/userRoute')
+const OrderRoute = require('./routes/orderRoute')
 
 
 const app = express()
@@ -25,6 +26,7 @@ app.use(express.urlencoded({extended: true}))
 app.use('/api',CategoryRoute)
 app.use('/api',ProductRoute)
 app.use('/api',UserRoute)
+app.use('/api',OrderRoute)
 app.use('/api/public/uploads', express.static('public/uploads'))
 
 
