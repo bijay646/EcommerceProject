@@ -31,7 +31,7 @@ exports.productRules = [
           .isLength({ min: 20 }).withMessage("Description must be at least 20 characters"),
      check('count_in_stock', 'Count is required').notEmpty()
           .isNumeric().withMessage("Count must be a number"),
-     check('category', "category is required").notEmpty(),
+     check('categoryId', "categoryId is required").notEmpty(),
      check('product_image', "product image is required")
 ]
 

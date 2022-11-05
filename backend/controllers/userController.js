@@ -32,8 +32,7 @@ exports.addUser = async (req, res) => {
           }
 
           // send token in email
-          const url = `http://localhost:5000/api/verifyUser/${token.token}`
-          //    const url = `http://localhost:3000/confirmEmail/${token.token}`
+          const url = `http://localhost:3000/emailConfirm/${token.token}`
           sendEmail({
                from: "noreply@something.com",
                to: email,
@@ -63,9 +62,10 @@ exports.userConfirmation = async (req, res) => {
      if (!user) {
           return res.status(400).json({ error: "User not found." })
      }
-     if (user.isVerified) {
-          return res.status(400).json({ error: "User already verified. Login to continue" })
-     }
+     
+     // if (user.isVerified) {
+     //      return res.status(400).json({ error: "User already verified. Login to continue" })
+     // }
      user.isVerified = true
      user = await user.save()
 
@@ -73,6 +73,7 @@ exports.userConfirmation = async (req, res) => {
           res.status(400).json({ error: "something went wrong" })
      }
      res.status(200).json({ message: "User verified successfully." })
+
 }
 
 
@@ -97,8 +98,7 @@ exports.resendConfirmation = async (req, res) => {
           return res.status(400).json({ error: "something went wrong" })
      }
      // send token to user email
-     const url = `http://localhost:5000/api/verifyUser/${token.token}`
-     // const url = `http://localhost:3000/confirmEmail/${token.token}`
+     const url = `http://localhost:3000/emailConfirm/${token.token}`
 
      sendEmail({
           from: "noreply@something.com",
@@ -130,8 +130,7 @@ exports.forgetpassword = async (req, res) => {
      }
      // send token in email
 
-     const url = `http://localhost:5000/api/resetpassword/${token.token}`
-     // const url = `${process.env.FRONTEND_URL}/resetpassword/${token.token}`
+     const url = `http://localhost:3000/resetpassword/${token.token}`
      sendEmail({
           from: "noreply@something.com",
           to: user.email,
@@ -226,35 +225,35 @@ exports.updateUser = async (req, res) => {
 
 
 // deleteUser
-exports.deleteUser = async(req, res) => {
+exports.deleteUser = async (req, res) => {
      await User.destroy({ where: { userId: req.params.id } })
-     .then(user => {
-          if (!user) {
-               return res.status(400).json({ error: "User not found." })
-          }
-          else {
-               return res.status(200).json({ message: "User deleted successfully." })
-          }
-     })
-     .catch(err => res.status(400).json({ error: err }))
+          .then(user => {
+               if (!user) {
+                    return res.status(400).json({ error: "User not found." })
+               }
+               else {
+                    return res.status(200).json({ message: "User deleted successfully." })
+               }
+          })
+          .catch(err => res.status(400).json({ error: err }))
 }
 
 
 // view all users available
-exports.userList = async(req, res) => {
-    let users = await User.findAll({})
-    if(!users){
-        return res.status(400).json({error:"Something went wrong."})
-    }
-    res.send(users)
+exports.userList = async (req, res) => {
+     let users = await User.findAll({})
+     if (!users) {
+          return res.status(400).json({ error: "Something went wrong." })
+     }
+     res.send(users)
 }
 
 
 // view user details
-exports.userDetails = async(req,res) => {
-    let user = await User.findOne({where:{userId:req.params.id}})
-    if(!user){
-        return res.status(400).json({error:"User not found.Please first register to continue. "})
-    }
-    res.send(user)
+exports.userDetails = async (req, res) => {
+     let user = await User.findOne({ where: { userId: req.params.id } })
+     if (!user) {
+          return res.status(400).json({ error: "User not found.Please first register to continue. " })
+     }
+     res.send(user)
 }

@@ -96,54 +96,60 @@ exports.findProductbyCategory = async (req, res) => {
      res.send(products)
 }
 
+
 // // filter product
-// exports.filterProduct = async (req,res) => {
-//     let sortby = req.query.sortby ? req.query.sortby : '_id'
-//     let order = req.query.order ? req.query.order : '1'
-//     let limit = req.query.limit ? Number(req.query.limit) : 9999999999
-//     let skip = req.query.skip ? Number(req.query.skip) : 0
-//     let Args = {}
 
-//     for(let key in req.body.filters){
-//         if(req.body.filters[key].length>0){
-//             if(key==='category'){
-//                 Args[key] = req.body.filters[key]
-//             }
-//             if(key === 'product_price'){
-//                 Args[key] = {
-//                     $gte : req.body.filters[key][0],
-//                     $lte : req.body.filters[key][1]
-//                 }
-//             }
-//         }
-//     }
-// // filters = { category: [mobile], product_price:[0,999]}
-//     let filteredProduct = await Product.find(Args)
-//     .sort([[sortby,order]])
-//     .limit(limit)
-//     .skip(skip)
+exports.filterProduct = async (req, res) => {
+     if(!req.body.categoryId){
+          let products = await Product.findAll({
+               include: [{
+                    model: Category,
+                    as: 'category'
+               }],
+               order: [["product_name", "ASC"]],
+               limit: req.body.limit
+          })
+          if (!products) {
+               return res.status(400).json({ error: "Something went wrong" })
+          }
+          return res.status(200).send(products)
 
-//     if(!filteredProduct){
-//         return res.status(400).json({error:"Something went wrong"})
-//     }
-//     // else{
-//         // res.send(filteredProduct)
-//     // }
-//     res.status(200).json({
-//         filteredProduct,
-//         size: filteredProduct.length
-//     })
+     }
+     else{
+          
+          let filteredProducts = await Product.findAll({
+               where: {
+                    categoryId: req.body.categoryId,
+                    // product_price: {
+                    //      [Op.gt]: price_filter_gt,
+                    //      [Op.lt]: price_filter_lt,
+                    // }
+               },
+               order: [["product_name", "ASC"]],
+               limit: req.body.limit
+          }
+          )
+          if (!filteredProducts) {
+               return res.status(400).json({ error:"Something went wrong" })
+          }
+          else {
+               return res.status(200).send(filteredProducts)
+          }
 
-// }
+     }
+
+
+}
 
 
 // related products
 exports.relatedProducts = async (req, res) => {
      let product = await Product.findOne({
+          where: { productId: req.params.id },
           include: [{
                model: Category,
                as: 'category'
-          }], where: { productId: req.params.id }
+          }]
      })
      if (!product) {
           return res.status(400).json({ error: "Something went wrong" })

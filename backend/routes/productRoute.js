@@ -11,9 +11,9 @@ router.post('/addproduct',upload.single('product_image'),productRules,validate,r
 router.get('/productlist', productController.viewProducts)
 router.get('/productdetails/:productId', productController.productDetails)
 router.put('/updateproduct/:id',requireSignin,productController.updateProduct)
-router.get('/deleteproduct/:id',requireSignin,productController.deleteProduct)
+router.delete('/deleteproduct/:id',requireSignin,productController.deleteProduct)
 router.get('/findbycategory/:id',productController.findProductbyCategory)
-// router.post('/getfilteredProduct',filterProduct)
-router.get('/relatedproducts/:id', productController.relatedProducts)
+router.post('/getfilteredProduct',productController.filterProduct)
+router.get('/relatedproducts/:id',productController.relatedProducts)
 
 module.exports = router

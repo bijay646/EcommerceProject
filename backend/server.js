@@ -11,7 +11,7 @@ const OrderRoute = require('./routes/orderRoute')
 
 const app = express()
 var corOptions = {
-     origin:"https://localhost:3000"
+     origin:"http://localhost:3000"
 }
 
 
