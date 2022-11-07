@@ -11,12 +11,11 @@ const Items = () => {
     const [categoryId, setcategoryId] = useState('')
     const [filteredProduct, setFilteredProduct] = useState([])
     const [searchItems, setSearchItems] = useState([])
-    const [limit, setLimit] = useState(8)
     const itemName = useSelector(state => state.item.items)
     console.log(itemName)
 
     useEffect(() => {
-        getFilteredProducts(categoryId, limit)
+        getFilteredProducts(categoryId)
             .then(data => {
                 if (data.error) {
                     console.log(data.error)

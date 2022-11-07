@@ -18,6 +18,7 @@ const OrderInfo = () => {
      }, [])
 
      const order = useSelector(state => state.orderDetails.order)
+     console.log(order)
      return (
           <>
                <Navbar />

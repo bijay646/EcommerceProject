@@ -105,8 +105,7 @@ exports.filterProduct = async (req, res) => {
                     model: Category,
                     as: 'category'
                }],
-               order: [["product_name", "ASC"]],
-               limit: req.body.limit
+               order: [["product_name", "ASC"]]
           })
           if (!products) {
                return res.status(400).json({ error: "Something went wrong" })

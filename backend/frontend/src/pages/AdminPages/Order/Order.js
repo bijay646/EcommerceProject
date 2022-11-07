@@ -21,6 +21,7 @@ const Order = () => {
              }
          })
  }, [])
+ console.log(orders)
 
   return (
     <>
@@ -58,7 +59,7 @@ const Order = () => {
                         <td>{i + 1}</td>
                         <td>{item.orderId}</td>
                         <td>Rs. {item.totalAmount}</td>
-                        <td>{item.user.username}</td>
+                        <td>User Id: {item.userId}</td>
                         <td>{item.status}</td>
                         <td> <Link to={`/admin/order/orderInfo/${item.orderId}`} className='btn btn-info'>click</Link></td>
                         <td>                          

@@ -78,14 +78,14 @@ export const deleteProduct = (id,token)=>{
 
 
 // to get filtered product
-export const getFilteredProducts = (categoryId,limit) => {
+export const getFilteredProducts = (categoryId) => {
     return fetch(`${API}/getfilteredProduct`,{
         method:"POST",
         headers:{
             Accept:"application/json",
             "Content-Type":"application/json",
         },
-        body: JSON.stringify({categoryId,limit})
+        body: JSON.stringify({categoryId})
     })
     .then(res=> res.json())
     .catch(error=>console.log(error))
