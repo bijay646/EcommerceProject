@@ -65,18 +65,18 @@ const UpdateCategory = () => {
                         <Link to='/admin/category' className='btn btn-primary'>Go Back</Link>
 
                     </div>
-                    <form className='w-50 m-5 p-5 shadow-lg'>
+                    <form className='w-50 m-5 p-5 shadow-sm'>
                         {showError()}
                         <label htmlFor='category'>Category Name</label>
-                        <input type={'text'} readOnly value={category.category_name} className='form-control mb-3' />
+                        <input type={'text'} readOnly value={category.category_name} className='form-control mb-3' id="category"/>
 
                         {
                             success ? showSuccess() :
                                 <>
-                                    <label htmlFor='newCategory'>New Category:</label>
-                                    <input type={'text'} onChange={e => setNewCategory(e.target.value)} className='form-control' />
+                                    <label htmlFor='newCategory'>New Category</label>
+                                    <input type={'text'} onChange={e => setNewCategory(e.target.value)} className='form-control' id='newCategory'/>
 
-                                    <button className='btn btn-warning mt-2' onClick={handleUpdateChange}>Update Category</button>
+                                    <button className='btn btn-warning mt-2 form-control text-white' onClick={handleUpdateChange}>Update Category</button>
                                 </>
                         }
 

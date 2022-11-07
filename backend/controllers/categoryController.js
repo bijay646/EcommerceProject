@@ -1,9 +1,8 @@
 const db = require('../models')
-
 const Category = db.categories
 
-// 1.add new category
 
+// 1.add new category
 const addCategory = async (req, res) => {
 
      let category = await Category.findOne({ where: { category_name: req.body.category_name } })
@@ -12,7 +11,6 @@ const addCategory = async (req, res) => {
           if (!category) {
                return res.status(400).json({ error: "something went wrong" })
           }
-          // console.log(category)
           res.status(200).send(category)
      }
      else {

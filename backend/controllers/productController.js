@@ -97,8 +97,7 @@ exports.findProductbyCategory = async (req, res) => {
 }
 
 
-// // filter product
-
+//get filtered products
 exports.filterProduct = async (req, res) => {
      if(!req.body.categoryId){
           let products = await Product.findAll({
@@ -120,10 +119,6 @@ exports.filterProduct = async (req, res) => {
           let filteredProducts = await Product.findAll({
                where: {
                     categoryId: req.body.categoryId,
-                    // product_price: {
-                    //      [Op.gt]: price_filter_gt,
-                    //      [Op.lt]: price_filter_lt,
-                    // }
                },
                order: [["product_name", "ASC"]],
                limit: req.body.limit
@@ -138,11 +133,10 @@ exports.filterProduct = async (req, res) => {
 
      }
 
-
 }
 
 
-// related products
+//find related products
 exports.relatedProducts = async (req, res) => {
      let product = await Product.findOne({
           where: { productId: req.params.id },

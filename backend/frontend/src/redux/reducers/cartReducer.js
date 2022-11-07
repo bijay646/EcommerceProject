@@ -7,10 +7,10 @@ const cartReducer = (state = {cart_items: [], shipping_info: {}}, action) => {
             const itemExists = state.cart_items.find(i=>i.product===item.product)
             if(itemExists){
                 return {...state,
-                cart_items: [...state.cart_items.map(i=>{
-                    return i.product === item.product ? item : i 
+                cart_items: [...state.cart_items.map(data=>{
+                    return data.product === item.product ? item : data 
                 })]}
-            }
+            }    
             else{
                 return {...state,
                     cart_items: [...state.cart_items, item]}

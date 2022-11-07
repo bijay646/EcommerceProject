@@ -29,7 +29,6 @@ const DeleteProduct = () => {
                          console.log(data.error)
                     }
                     else {
-                         console.log(data)
                          setProduct(data)
                     }
                })
@@ -69,12 +68,12 @@ const DeleteProduct = () => {
                     <div className='col-md-9 p-5 text-start'>
                          <div className='d-flex justify-content-between w-75 mb-5'>
                               <h3>
-                                   Products
+                                   Product Delete
                               </h3>
                               <Link to='/admin/products' className='btn btn-primary'>GO BACK</Link>
 
                          </div>
-                         <div className='container d-flex shadow-lg '>
+                         <div className='container d-flex shadow-sm'>
                               <div className='p-5 my-5 border-end border-3 text-center'>
                                    <h2 className='text-center text-decoration-underline'>Product Details</h2>
                                    <hr className='my-3'></hr>

@@ -40,9 +40,9 @@ const ResetPassword = () => {
             {
                 !success &&
                 <form className='my-5 w-50 mx-auto p-5 shadow-lg'>
-                    <label htmlFor='pwd'>New Password:</label>
+                    <label htmlFor='pwd' className='fs-3'>Enter New Password:</label>
                     <input type={'text'} id='pwd' className='form-control' onChange={e => setPassword(e.target.value)} />
-                    <button className='btn btn-warning mt-3' onClick={handleSubmit}>Reset Password</button>
+                    <button className='btn btn-primary mt-3' onClick={handleSubmit}>Reset Password</button>
                 </form>
             }
             <Footer />

@@ -9,15 +9,12 @@ const AdminDashboard = () => {
                <Navbar />
                <div className='row'>
                     <div className='col-md-3'>
-                         <AdminSidebar />
+                         <AdminSidebar/>
                     </div>
-                    <div className='col-md-9'>
-                         Welcome to Admin Dashboard.
+                    <div className='col-md-9 my-4 '>                         
                     </div>
                </div>
-
                <Footer />
-
           </>
      )
 }

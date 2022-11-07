@@ -6,16 +6,7 @@ module.exports = (sequelize, DataTypes) => {
                primaryKey: true,
                autoIncrement: true
           },
-          // orderItemss: [{
-          //      productId: {
-          //           type: DataTypes.INTEGER,
-          //           allowNull: false
-          //      },
-          //      quantity: {
-          //           type: DataTypes.INTEGER,
-          //           allowNull: false
-          //      }
-          // }],
+          
           orderItemsIds: {     
                type: DataTypes.STRING,
                allowNull: true

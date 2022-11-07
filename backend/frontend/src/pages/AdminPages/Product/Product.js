@@ -37,7 +37,7 @@ const Products = () => {
 
                          </div>
                          <div className='container'>
-                              <table className='table table-hover table-striped text-center p-3 my-5 shadow-lg'>
+                              <table className='table table-hover table-striped text-start p-4 my-5 shadow-sm'>
                                    <thead>
                                         <tr>
                                              <th>S.No.</th>

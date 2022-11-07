@@ -43,6 +43,5 @@ exports.validate = (req, res, next) => {
      else {
           //there can be multiple errors, so we need to first convert it to array and display only first value in the array
           return res.status(400).json({ error: errors.array()[0].msg })
-          // return res.status(400).json({error: errors.array().map(err=>err.msg)})
      }
 }

@@ -41,7 +41,7 @@ const Login = () => {
                     navigate('/user/profile')
                }
                else if (user && user.role === 1) {
-                    navigate('/admin/dashboard')
+                    navigate('/admin/users')
                }
                else {
                     return
@@ -53,12 +53,12 @@ const Login = () => {
      return (
           <>
                <Navbar />
-               <main className="form-signin w-50 m-auto mx-auto my-5 shadow-lg p-5">
+               <main className="form-signin w-50 m-auto mx-auto my-3 shadow-sm px-5">
                     <form>
                          {showError()}
                          {redirect()}
-                         <img className="mb-4" src="./logo192.png" alt="" width="72" height="57" />
-                         <h1 className="h3 mb-3 fw-normal">Please sign in</h1>
+                         <img className="mb-4" src="./person.jpg" alt="" width="70" height="70" />
+                         <h1 className="h3 mb-3 fw-normal">Sign In</h1>
 
                          <div className="form-floating mb-2">
                               <input type="email" className="form-control" id="floatingInput" placeholder="name@example.com" onChange={e => setEmail(e.target.value)} />
@@ -74,10 +74,10 @@ const Login = () => {
                                    <input type="checkbox" value="remember-me" /> Remember me
                               </label>
                          </div>
-                         <button className="w-100 btn btn-lg btn-primary" type="submit" onClick={handleSubmit}>Sign in</button>
+                         <button className="w-100 btn btn-lg btn-primary mb-3" type="submit" onClick={handleSubmit}>Sign in</button>
                          <Link to='/forgetpassword'>Forget Password</Link><br />
-                         I do not have an account. <Link to='/register'>Register</Link>
-                         <p className="mt-5 mb-3 text-muted">&copy; 2017–2022</p>
+                         Don't have an account? <Link to='/register'>Register</Link>
+                        
                     </form>
                </main>
                <Footer />

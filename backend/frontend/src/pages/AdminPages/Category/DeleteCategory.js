@@ -63,7 +63,7 @@ const DeleteCategory = () => {
                         <Link to='/admin/category' className='btn btn-primary'>Go Back</Link>
 
                     </div>
-                    <form className='w-50 m-5 p-5 shadow-lg'>
+                    <form className='w-50 m-5 p-5 shadow-sm'>
                         {showError()}
                         <label htmlFor='category'>Category Name</label>
                         <input type={'text'} readOnly value={category.category_name} className='form-control mb-3' />

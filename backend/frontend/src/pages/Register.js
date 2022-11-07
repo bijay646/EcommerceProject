@@ -14,7 +14,6 @@ const Register = () => {
      })
      const [error, setError] = useState('')
      const [success, setSuccess] = useState('')
-     // const [username, setUsername] = useState('')
 
      const { username, email, password } = user
      const handleChange = name => e => {
@@ -52,9 +51,9 @@ const Register = () => {
      return (
           <>
                <Navbar />
-               <main className="form-signin w-50 m-auto mx-auto my-5 shadow-lg p-5">
+               <main className="form-signin w-50 m-auto mx-auto my-3 shadow-sm px-5">
                     <form>
-                         <img className="mb-4" src="./logo192.png" alt="" width="72" height="57" />
+                         <img className="mb-4" src="./person.jpg" alt="" width="70" height="70" />
                          <h1 className="h3 mb-3 fw-normal">Register</h1>
                          {showError()}
                          {showSuccess()}
@@ -77,9 +76,9 @@ const Register = () => {
                                    <input type="checkbox" value="remember-me" /> I accept the terms and conditions.
                               </label>
                          </div>
-                         <button className="w-100 btn btn-lg btn-primary" type="submit" onClick={handleRegister}>Register</button>
+                         <button className="w-100 mb-3 btn btn-lg btn-primary" type="submit" onClick={handleRegister}>Register</button>
                          I already have an account. <Link to='/login'>Sign in</Link>
-                         <p className="mt-5 mb-3 text-muted">&copy; 2017–2022</p>
+                  
                     </form>
                </main>
                <Footer />

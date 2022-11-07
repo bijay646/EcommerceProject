@@ -1,4 +1,5 @@
 const db = require('../models')
+const { sendEmail } = require('../utils/sendEmail')
 const Order = db.orders
 const OrderItem = db.orderItems
 const Product = db.products
@@ -42,10 +43,11 @@ exports.placeOrder = async (req, res) => {
      const orderItemsIds = await Promise.all(
           req.body.orderItems.map(async orderItem => {
                let orderIteminfo = {
-                    productId: orderItem.productId,
+                    productId: orderItem.product,
                     quantity: orderItem.quantity,
                     orderId: order.orderId
                }
+               
                const orderItem1 = await OrderItem.create(orderIteminfo)
                if (!orderItem1) {
                     return res.status(400).json({ error: "failed to place order" })
@@ -70,16 +72,22 @@ exports.placeOrder = async (req, res) => {
 
      let totalPrice = individualTotal.reduce((acc, cur) => acc + cur)
      order.totalAmount = totalPrice
-     //[1, 2, 3].join(""); can also be used which outputs  123
      order.orderItemsIds = orderItemsIds.toString()
      await order.save()
+     const url = `http://localhost:3000/admin/order/approveOrder/${order.orderId}`
+          sendEmail({
+               from: "noreply@something.com",
+               to: 'admin@gmail.com',
+               subject: "Order Placement",
+               text: " click on the button below to confirm the order." + url,
+               html: `<a href='${url}'><button>CONFIRM ORDER</button></a>`
+          })
 
      if (!order) {
           return res.status(400).json({ error: "failed to place order." })
      }
      res.send(order)
 }
-
 
 
 //to view all placed orders
@@ -180,8 +188,7 @@ exports.deleteOrder = async (req, res) => {
                }
                else {
                     await OrderItem.destroy({ where: { orderId: req.params.orderId } })
-                         .then(() => {
-                             
+                         .then(() => {                       
                                    return res.status(200).json({ message: "Order and associated OrderItems deleted successfully." })
                          })
                          .catch(err => res.status(400).json({ error: err }))

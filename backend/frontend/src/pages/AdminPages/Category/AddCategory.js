@@ -47,16 +47,16 @@ const AddCategory = () => {
                 <div className='col-md-9 p-5 text-start'>
                     <div className='d-flex justify-content-between w-75 mx-auto'>
                     <h3>
-                        Category
+                        Add Category
                     </h3>
                     <Link to= '/admin/category' className='btn btn-primary'>Go Back</Link>
                     </div>
-                    <form className='m-5 p-5 shadow-lg w-50 mx-auto'>
+                    <form className='m-5 p-5 shadow-sm w-50 mx-auto'>
                         {showError()}
                         {showSuccess()}
                         <label htmlFor='category_name'>Category Name:</label>
                         <input type={'text'} id= 'category-name' className='form-control' onChange={e=>setCategory(e.target.value)}/>
-                        <button className='btn btn-warning form-control mt-3' onClick={categorySubmit}>ADD CATEGORY</button>
+                        <button className='btn btn-warning form-control mt-3 text-white' onClick={categorySubmit}>ADD CATEGORY</button>
                     </form>
         
                 </div>

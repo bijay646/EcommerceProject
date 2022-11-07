@@ -6,12 +6,12 @@ const { sendEmail } = require('../utils/sendEmail')
 const jwt = require('jsonwebtoken')
 const { expressjwt } = require('express-jwt')
 
+
 exports.addUser = async (req, res) => {
      const { username, email, password } = req.body
      // check email if already registered
      let user = await User.findOne({ where: { email: email } })
      if (!user) {
-          // if user is not found, we create a new user
           let userinfo = {
                username: username,
                email: email,
@@ -37,22 +37,20 @@ exports.addUser = async (req, res) => {
                from: "noreply@something.com",
                to: email,
                subject: "Verification Email",
-               text: " Please click on the following link or copy paste it in your browser to verify your email." + url,
+               text: " Please click on the verify email button or go to the link to verify your email." + url,
                html: `<a href='${url}'><button>Verify email.</button></a>`
           })
           res.send(user1)
 
      }
      else {
-          // if user is found, return error
+          // if user is already registered.
           return res.status(400).json({ error: "User/Email already exists" })
      }
-
 
 }
 
 // user verification
-
 exports.userConfirmation = async (req, res) => {
      const token = await Token.findOne({ where: { token: req.params.token } })
      if (!token) {
@@ -63,9 +61,6 @@ exports.userConfirmation = async (req, res) => {
           return res.status(400).json({ error: "User not found." })
      }
      
-     // if (user.isVerified) {
-     //      return res.status(400).json({ error: "User already verified. Login to continue" })
-     // }
      user.isVerified = true
      user = await user.save()
 
@@ -104,7 +99,7 @@ exports.resendConfirmation = async (req, res) => {
           from: "noreply@something.com",
           to: user.email,
           subject: "Verification Email",
-          text: " Please click on the following link or copy paste it in your browser to verify your email." + url,
+          text: " Please click on the verify email button or go to the link to verify your email." + url,
           html: `<a href='${url}'><button>Verify email.</button></a>`
      })
 
@@ -135,7 +130,7 @@ exports.forgetpassword = async (req, res) => {
           from: "noreply@something.com",
           to: user.email,
           subject: "Password Reset Link",
-          text: " Please click on the following link or copy paste it in your browser to reset your password." + url,
+          text: " Please click on Reset password button or go to the link to reset your password." + url,
           html: `<a href='${url}'><button>RESET PASSWORD.</button></a>`
      })
 
@@ -196,7 +191,7 @@ exports.signOut = (req, res) => {
 }
 
 // authorization
-//if token is found true is returned else returned false
+//if jwt token is found,verifies that user is signedIn else returns false
 exports.requireSignin = expressjwt({
      secret: process.env.JWT_SECRET,
      algorithms: ['HS256']
@@ -208,9 +203,6 @@ exports.updateUser = async (req, res) => {
      let userinfo = {
           email: req.body.email,
           username: req.body.username,
-          password: req.body.password,
-          role: req.body.role,
-          isVerified: req.body.isVeriried
      }
      await User.update(userinfo, { where: { userId: req.params.id } })
           .then(user => {

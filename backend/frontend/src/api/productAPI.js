@@ -48,6 +48,21 @@ export const updateProduct = (id, product, token) => {
     .then(res=>res.json())
     .catch(error=>console.log(error))
 }
+
+//to update product stock value
+export const updateProductStock = (id, count_in_stock, token) => {
+    return fetch(`${API}/updateproduct/${id}`,{
+        method:"PUT",
+        headers:{
+            Accept: "application/json",
+            "Content-Type":"application/json",
+            Authorization : `Bearer ${token}`
+        },
+        body: JSON.stringify({count_in_stock})
+    })
+    .then(res=>res.json())
+    .catch(error=>console.log(error))
+}
  
 //to delete a product
 export const deleteProduct = (id,token)=>{

@@ -22,8 +22,8 @@ const AddProduct = () => {
     const [error, setError] = useState('')
     const { product_name, product_price, product_description, count_in_stock, formData} = product
 
-    let my_ref = useRef()
-    let sel_ref = useRef()
+    let image_ref = useRef()
+    let category_ref = useRef()
 
     const { token } = isAuthenticated()
     useEffect(() => {
@@ -65,8 +65,8 @@ const AddProduct = () => {
                     setProduct({ ...product,product_name: '', product_price: '', product_description: '', count_in_stock: ''})
                     setError('')
                     setSuccess(true)
-                    my_ref.current.value = ''
-                    sel_ref.current.value = ''
+                    image_ref.current.value = ''
+                    category_ref.current.value = ''
 
                 }
             })
@@ -99,7 +99,7 @@ const AddProduct = () => {
 
                     </div>
                     <div className='container'>
-                        <form className='p-5 shadow-lg mt-5 w-75'>
+                        <form className='p-5 shadow-sm mt-5 w-75'>
                             {showError()}
                             {showSuccess()}
                             <label htmlFor='product_name'>Product Name</label>
@@ -111,7 +111,7 @@ const AddProduct = () => {
                             <label htmlFor='stock'>Count in Stock</label>
                             <input type={'number'} className='form-control mb-2' id='stock' onChange={handleChange('count_in_stock')} value={count_in_stock} />
                             <label htmlFor='category'>Category</label>
-                            <select className='form-control mb-2' id='category' onChange={handleChange('categoryId')} ref={sel_ref}>
+                            <select className='form-control mb-2' id='category' onChange={handleChange('categoryId')} ref={category_ref}>
                                 <option></option>
                                 {
                                     categories.map((category, i) => {
@@ -120,9 +120,9 @@ const AddProduct = () => {
                                 }
                             </select>
                             <label htmlFor='product_image'>Image</label>
-                            <input type={'file'} id='product_image' className='form-control mb-2s' onChange={handleChange('product_image')} ref={my_ref} />
+                            <input type={'file'} id='product_image' className='form-control mb-2s' onChange={handleChange('product_image')} ref={image_ref} />
 
-                            <button className='btn btn-warning form-control mt-3' onClick={handleSubmit}>Add Product</button>
+                            <button className='btn btn-warning mt-3 fs-5 text-white' onClick={handleSubmit}>Add Product</button>
                         </form>
 
                     </div>

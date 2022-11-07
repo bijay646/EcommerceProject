@@ -32,11 +32,25 @@ const AdminSidebar = ({ category, products, users, orders }) => {
                <div className="d-flex flex-column flex-shrink-0 p-3 bg-light" style={{ width: "280px" }}>
 
                     <Link to="/admin/dashboard" className="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-                         <i className='bi bi-speedometer2 me-2'></i>
+                         <i className="bi bi-bag-dash-fill me-3 fs-4"></i>
                          <span className="fs-4">Dashboard</span>
                     </Link>
                     <hr />
                     <ul className="nav nav-pills flex-column mb-auto text-start">
+                         <li>
+                              {
+                                   users ?
+                                        <Link to="/admin/users" className="nav-link link-dark  active text-white">
+                                             <i className='bi bi-person-circle me-2'></i>
+                                             Users
+                                        </Link>
+                                        :
+                                        <Link to="/admin/users" className="nav-link link-dark">
+                                             <i className='bi bi-person-circle me-2'></i>
+                                             Users
+                                        </Link>
+                              }
+                         </li>
                          <li>
                               {
                                    category ?
@@ -65,31 +79,17 @@ const AdminSidebar = ({ category, products, users, orders }) => {
                                         </Link>
                               }
                          </li>
-                         <li>
-                              {
-                                   users ?
-                                        <Link to="/admin/users" className="nav-link link-dark  active text-white">
-                                             <i className='bi bi-person-circle me-2'></i>
-                                             Users
-                                        </Link>
-                                        :
-                                        <Link to="/admin/users" className="nav-link link-dark">
-                                             <i className='bi bi-person-circle me-2'></i>
-                                             Users
-                                        </Link>
-                              }
-                         </li>
 
                          <li>
                               {
                                    orders ?
                                         <Link to="/admin/orders" className="nav-link link-dark active text-white">
-                                             <i className='bi bi-table me-2'></i>
+                                             <i className="bi bi-card-checklist me-2"></i>
                                              Orders
                                         </Link>
                                         :
                                         <Link to="/admin/orders" className="nav-link link-dark">
-                                             <i className='bi bi-table me-2'></i>
+                                             <i className="bi bi-card-checklist me-2"></i>
                                              Orders
                                         </Link>
                               }
@@ -98,7 +98,7 @@ const AdminSidebar = ({ category, products, users, orders }) => {
                     <hr />
                     <div className="dropdown">
                          <Link to="#" className="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                              <img src="https://github.com/mdo.png" alt="" width="32" height="32" className="rounded-circle me-2 mt-2" />
+                              <img src="https://cdn.icon-icons.com/icons2/2643/PNG/512/male_boy_person_people_avatar_icon_159358.png" alt="" width="32" height="32" className="rounded-circle me-2 mt-2" />
                               <strong>{user.username}</strong>
                          </Link>
                          <ul className="dropdown-menu text-small shadow">

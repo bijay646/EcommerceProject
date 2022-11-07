@@ -30,7 +30,6 @@ const UpdateProduct = () => {
                          console.log(data.error)
                     }
                     else {
-                         console.log(data)
                          setProduct(data)
                     }
                })
@@ -76,21 +75,20 @@ const UpdateProduct = () => {
                     <div className='col-md-9 p-5 text-start'>
                          <div className='d-flex justify-content-between w-75 mb-5'>
                               <h3>
-                                   Products
+                                   Product Update
                               </h3>
                               <Link to='/admin/products' className='btn btn-primary'>GO BACK</Link>
 
                          </div>
-                         <div className='container d-flex shadow-lg '>
+                         <div className='container d-flex shadow-sm '>
                               <div className='p-5 my-5 border-end border-3 text-center'>
                                    <h2 className='text-center text-decoration-underline'>Product Details</h2>
                                    <hr className='my-3'></hr>
                                    <img src={`${API}/${product_image}`} alt={product_name} style={{ height: "320px" }} />
-                                   <h3>Product Name: <u>{product_name}</u></h3>
-                                   <h3>Price: <u>Rs. {product_price}</u></h3>
-                                   <h3>Description: <u>{product_description}</u></h3>
-                                   <h3>Count in Stock: <u>{count_in_stock}</u></h3>
-
+                                   <h4>Product Name: <u style={{fontSize:"22px", color:'grey'}}>{product_name}</u></h4>
+                                   <h4>Price: <u style={{fontSize:"22px", color:'grey'}}>Rs. {product_price}</u></h4>
+                                   <h4>Count in Stock: <u style={{fontSize:"22px", color:'grey'}}>{count_in_stock}</u></h4>
+                                   <h4>Description: <u style={{fontSize:"22px", color:'grey'}}>{product_description}</u></h4>
                               </div>
                               <form className='w-50 mx-auto p-5 my-5'>
                                    {showError()}
@@ -106,7 +104,7 @@ const UpdateProduct = () => {
                                    <input type={'number'} id='stock' className='form-control mb-3' onChange={handleChange('count_in_stock')} value={count_in_stock} />
                                    {
                                         !success ?
-                                             <button className='btn btn-warning mt-3 form-control' onClick={handleUpdateChange}>Update Product</button>
+                                             <button className='btn btn-warning mt-3 form-control text-white fs-5' onClick={handleUpdateChange}>Update Product</button>
                                              : showSuccess()
                                    }
 

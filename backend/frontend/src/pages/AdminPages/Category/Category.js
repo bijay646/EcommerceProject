@@ -36,7 +36,7 @@ const Category = () => {
                         <Link to='/admin/category/add' className='btn btn-primary'>Add Category</Link>
 
                     </div>
-                    <table className='table table-hover table-striped text-center p-3 m-5  w-75'>
+                    <table className='table table-hover table-striped text-center p-3 m-5  w-75 shadow-sm'>
                         <thead>
                             <tr>
                                 <th>S.No.</th>

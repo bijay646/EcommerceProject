@@ -41,10 +41,10 @@ const ForgetPassword = () => {
             {showSuccess()}
             {
                 !success &&
-                <form className='my-5 w-50 mx-auto p-5 shadow-lg'>
-                    <label htmlFor='email'>Email Address:</label>
+                <form className='my-5 w-50 mx-auto p-5 shadow-sm'>
+                    <label htmlFor='email' className='fs-3'>Enter your email:</label>
                     <input type={'text'} id='email' className='form-control' onChange={e => setEmail(e.target.value)} />
-                    <button className='btn btn-warning mt-3' onClick={handleSubmit}>Forget Password</button>
+                    <button className='btn btn-primary mt-3' onClick={handleSubmit}>Forget Password</button>
                 </form>
             }
             <Footer />

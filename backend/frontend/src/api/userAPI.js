@@ -3,7 +3,6 @@ import { API } from "../config";
 
 //to register new user
 export const userRegister = (user) => {
-//     console.log(user)
     return fetch(`${API}/register`, {
         method:"POST",
         headers:{
@@ -97,4 +96,43 @@ export const signin = (email, password) => {
      .catch(error=>console.log(error))
  }
  
+ //get user list
+ export const getUsers = ()=> {
+    return fetch(`${API}/userlist`,{
+        method: "GET"
+    })
+    .then(res=>res.json())
+    .catch(err=>console.log(err))
+}
+
+//to delete a user
+export const deleteUser = (id,token)=>{
+    return fetch(`${API}/deleteuser/${id}`,{
+        method:"DELETE",
+        headers:{
+            Authorization : `Bearer ${token}`
+        }
+
+    }).then(res=>res.json())
+    .catch(err=>console.log(err))
+}
+
+//to update user
+export const updateUser = (id,email,username, token) => {
+    return fetch(`${API}/updateuser/${id}`,{
+        method: "PUT",
+        headers:{
+            Accept: "application/json",
+            "Content-Type":"application/json",
+            Authorization : `Bearer ${token}`
+        },
+        body: JSON.stringify({email,username})
+    })
+    .then(res=>res.json())
+    .catch(err=>console.log(err))
+}
+
+
+
+
  
