@@ -110,6 +110,8 @@ export const deleteUser = (id,token)=>{
     return fetch(`${API}/deleteuser/${id}`,{
         method:"DELETE",
         headers:{
+            Accept: "application/json",
+            "Content-Type":"application/json",
             Authorization : `Bearer ${token}`
         }
 

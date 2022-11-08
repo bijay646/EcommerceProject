@@ -1,6 +1,6 @@
 const uuidv1 = require('uuidv1')
 const crypto = require('crypto');
-const { useInflection } = require('sequelize');
+// const { useInflection } = require('sequelize');
 
 module.exports = (sequelize,DataTypes)=>{
      const User = sequelize.define("user",{
