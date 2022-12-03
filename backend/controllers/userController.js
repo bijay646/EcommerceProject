@@ -249,3 +249,7 @@ exports.userDetails = async (req, res) => {
      }
      res.send(user)
 }
+
+
+
+const {name,age}= user

@@ -23,7 +23,7 @@ const OrderDetails = () => {
                <Navbar />
                {
                     order &&
-                    <div className='my-5 container mx-auto p-5 shadow-lg'>
+                    <div className='my-5 container mx-auto p-5 shadow'>
                          <div className='row'>
                               <div className='col-10'></div>
                               <div className='col-2'>
